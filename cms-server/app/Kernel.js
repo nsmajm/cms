@@ -19,8 +19,12 @@ module.exports = {
      *@return void
      */
     init: () => {
-        app.use(bodyParser.json());
+        app.use(bodyParser.json({limit: "50mb"}));
+        app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit: 50000}));
+    },
+    handleRoute: () => {
         app.use('/api', routes);
+
         app.use((req, res, next) => {
             const error = new Error;
             error.status = 404;
@@ -36,7 +40,6 @@ module.exports = {
             });
         });
     },
-
     /**
      * @function start
      * @boot up the application
@@ -50,7 +53,7 @@ module.exports = {
             dbConnect();
 
 
-            console.log(` new stated on ${process.env.PORT}`);
+            console.log(`stated on ${process.env.PORT}`);
         });
     },
 

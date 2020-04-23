@@ -7,7 +7,7 @@ module.exports = {
         let {first_name, last_name, phone_number, email, password} = req.body;
         findUser = await userModel.findOne({'email': email});
         if (await findUser) {
-            return  res.json(
+            return res.json(
                 await errorResponse(`${email} already exists`));
         }
         let user = await new userModel({
@@ -25,4 +25,17 @@ module.exports = {
             });
         });
     },
+    massData: async (req, res) => {
+        const users = req.body;
+        for (i = 0; i < users.length; i++) {
+            await new userModel({
+                first_name: users[i].first_name,
+                last_name: users[i].last_name,
+                phone_number: users[i].phone_number,
+                email: users[i].email,
+                password: users[i].password
+            }).save();
+            console.log(i)
+        }
+    }
 };

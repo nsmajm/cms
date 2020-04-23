@@ -1,8 +1,22 @@
-const kernel = require('./app/Kernel');
+const {init, start, handleRoute} = require('./app/Kernel');
 const UserModel = require('./app/model/UserModel');
 
-kernel.init();
+/**
+ * @method init
+ * @initialize the app
+ */
+init();
+/**
+ * @method handleRoute
+ * @handle the upcoming request
+ */
 
-kernel.start();
+handleRoute();
+
+/**
+ * @method start
+ * @start the server
+ */
+start();
 
 
