@@ -7,7 +7,7 @@ module.exports = {
             status: code
         };
     },
-    errorResponse: async (data, message = 'user created successfully', code = 500) => {
+    errorResponse: async (data = null, message = 'Error', code = 500) => {
         return {
             token: null,
             message: message,

@@ -7,7 +7,7 @@ module.exports = {
         let {first_name, last_name, phone_number, email, password} = req.body;
         findUser = await userModel.findOne({'email': email});
         if (await findUser) {
-            return await res.json(
+            return  res.json(
                 await errorResponse(`${email} already exists`));
         }
         let user = await new userModel({
@@ -18,7 +18,7 @@ module.exports = {
             password: password
         }).save(async (err, user) => {
             if (err) {
-                return await res.json(errorResponse(err))
+                return res.json(await errorResponse(err))
             }
             return await res.json({
                 'response': await successResponse(user)
