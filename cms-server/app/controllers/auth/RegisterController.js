@@ -20,7 +20,7 @@ module.exports = {
             if (err) {
                 return await res.json(errorResponse(err))
             }
-            return res.json({
+            return await res.json({
                 'response': await successResponse(user)
             });
         });

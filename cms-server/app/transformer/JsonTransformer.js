@@ -1,17 +1,17 @@
 const {generateToken} = require('../../vendor/TokenHelper');
 module.exports = {
-    successResponse: async (data) => {
+    successResponse: async (data, message = 'user created successfully', code = 200) => {
         return {
-            'token': await generateToken(data),
-            'message': 'user created successfully',
-            'success': true
+            token: await generateToken(data),
+            message: message,
+            status: code
         };
     },
-    errorResponse: async (data) => {
+    errorResponse: async (data, message = 'user created successfully', code = 500) => {
         return {
-            'token': null,
-            'message': data,
-            'success': false
+            token: null,
+            message: message,
+            status: code
         }
     }
 };
